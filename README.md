@@ -4,7 +4,7 @@ This is an example to illustrate how to build a REST API with R and Plumber libr
 
 Authorization header check is configured in `nginx.conf` file.
 
-[](etc/diagram.png)
+![](./etc/diagram.png)
 
 ### Usage
 
