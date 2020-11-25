@@ -1,3 +1,9 @@
+### What is this?
+
+This is an example to how to build a REST API with R and Plumber library secured by an NGINX proxy server by checking Authorization header.
+
+Authorization header check is configured in `nginx.conf` file.
+
 ### Usage
 
 #### Build API Docker image
