@@ -8,24 +8,9 @@ Authorization header check is configured in `nginx.conf` file.
 
 ### Usage
 
-#### Build API Docker image
+#### Run API and Proxy Server
 ```
-$ ./build_api
-```
-
-#### Build proxy server Docker image
-```
-$ ./build_proxy_server
-```
-
-#### Run API
-```
-$ ./run_api
-```
-
-#### Run proxy server
-```
-$ ./run_proxy_server
+$ make start
 ```
 
 #### Make request to endpoint
