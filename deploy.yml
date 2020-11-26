@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Build API Docker image
+      docker_image:
+        name: api_img
+        source: build
+        build:
+          pull: false
+          path: .
+          dockerfile: Dockerfile.api
+        force_source: true
+      register: api_img_result
+
+    - name: Build Proxy Server Docker image
+      docker_image:
+        name: proxy_server_img
+        source: build
+        build:
+          pull: false
+          path: .
+          dockerfile: Dockerfile.proxyserver
+        force_source: true
+      register: proxy_server_img_result
+
+    - name: Delete current API container
+      docker_container:
+        name: api
+        state: absent
+      when: api_img_result.changed
+
+    - name: Run API container
+      docker_container:
+        name: api
+        image: api_img
+      when: api_img_result.changed
+
+    - name: Run proxy server container
+      docker_container:
+        name: proxy_server
+        image: proxy_server_img
+        ports: ["80:80"]
+        links: "api:api"
+        restart: true
+      when: proxy_server_img_result.changed

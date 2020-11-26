@@ -2,6 +2,6 @@
 #* @param msg The message to echo
 #* @get /echo
 function(msg="") {
-  list(msg = paste0("Message: '", msg, "'"))
+  list(msg = paste0("Message is: '", msg, "'"))
 }
 
