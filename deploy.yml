@@ -35,11 +35,16 @@
         image: api_img
       when: api_img_result.changed
 
+    - name: Delete current proxy server container
+      docker_container:
+        name: proxy_server
+        state: absent
+      when: proxy_server_img_result.changed
+
     - name: Run proxy server container
       docker_container:
         name: proxy_server
         image: proxy_server_img
         ports: ["80:80"]
         links: "api:api"
-        restart: true
       when: proxy_server_img_result.changed
